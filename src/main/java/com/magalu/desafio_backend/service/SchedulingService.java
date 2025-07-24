@@ -1,7 +1,6 @@
 package com.magalu.desafio_backend.service;
 
 import com.magalu.desafio_backend.dto.SchedulingRequestDTO;
-import com.magalu.desafio_backend.enums.CommunicationType;
 import com.magalu.desafio_backend.model.Scheduling;
 import com.magalu.desafio_backend.repository.SchedulingRepository;
 import org.springframework.stereotype.Service;
@@ -22,5 +21,10 @@ public class SchedulingService {
         scheduling.setMessage(request.mensagem());
         scheduling.setCommunicationType(request.tipoComunicacao());
         return repository.save(scheduling);
+    }
+
+    public Scheduling getSchedulingById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Scheduling not found with id: " + id));
     }
 }
