@@ -29,4 +29,10 @@ public class SchedulingController {
         Scheduling scheduling = service.getSchedulingById(id);
         return ResponseEntity.ok(scheduling);
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteSchedulingById(@RequestParam Long id) {
+        service.deleteSchedulingById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

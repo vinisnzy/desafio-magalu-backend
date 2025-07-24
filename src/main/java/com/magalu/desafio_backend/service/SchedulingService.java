@@ -27,4 +27,8 @@ public class SchedulingService {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Scheduling not found with id: " + id));
     }
+
+    public void deleteSchedulingById(Long id) {
+        repository.deleteById(id);
+    }
 }
