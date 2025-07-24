@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magalu.desafio_backend.dto.SchedulingRequestDTO;
 import com.magalu.desafio_backend.enums.CommunicationType;
 import com.magalu.desafio_backend.enums.SchedulingStatus;
+import com.magalu.desafio_backend.exceptions.ResourceNotFoundException;
 import com.magalu.desafio_backend.model.Scheduling;
 import com.magalu.desafio_backend.service.SchedulingService;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,9 +102,9 @@ class SchedulingControllerTest {
 
     @Test
     void shouldReturnNotFoundForNonExistentScheduling() throws Exception {
-        when(schedulingService.getSchedulingById(id)).thenReturn(null);
+        when(schedulingService.getSchedulingById(id)).thenThrow(ResourceNotFoundException.class);
 
-        mockMvc.perform(post("/scheduling").param("id", String.valueOf(id)))
+        mockMvc.perform(get("/scheduling").param("id", String.valueOf(id)))
                 .andExpect(status().isNotFound());
     }
 

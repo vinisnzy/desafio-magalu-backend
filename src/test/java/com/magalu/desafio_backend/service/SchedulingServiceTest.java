@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -55,12 +56,15 @@ class SchedulingServiceTest {
 
     @Test
     void shouldCreateScheduling() {
-        when(repository.save(scheduling)).thenReturn(scheduling);
+        when(repository.save(any(Scheduling.class))).thenReturn(scheduling);
 
         Scheduling result = service.createScheduling(request);
 
         assertNotNull(result);
-        assertEquals(scheduling, result);
+        assertEquals(request.mensagem(), result.getMessage());
+        assertEquals(request.destinatario(), result.getReceiver());
+        assertEquals(request.dataHora(), result.getDateTimeSending());
+        assertEquals(request.tipoComunicacao(), result.getCommunicationType());
     }
 
     @Test
