@@ -4,19 +4,17 @@ import com.magalu.desafio_backend.dto.SchedulingRequestDTO;
 import com.magalu.desafio_backend.model.Scheduling;
 import com.magalu.desafio_backend.service.SchedulingService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/scheduling")
+@RequiredArgsConstructor
 public class SchedulingController {
 
     private final SchedulingService service;
-
-    public SchedulingController(SchedulingService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<Scheduling> createScheduling(@Valid @RequestBody SchedulingRequestDTO request) {
