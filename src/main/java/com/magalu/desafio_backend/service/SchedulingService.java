@@ -1,6 +1,7 @@
 package com.magalu.desafio_backend.service;
 
 import com.magalu.desafio_backend.dto.SchedulingRequestDTO;
+import com.magalu.desafio_backend.enums.SchedulingStatus;
 import com.magalu.desafio_backend.model.Scheduling;
 import com.magalu.desafio_backend.repository.SchedulingRepository;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class SchedulingService {
         scheduling.setReceiver(request.destinatario());
         scheduling.setMessage(request.mensagem());
         scheduling.setCommunicationType(request.tipoComunicacao());
+        scheduling.setStatus(SchedulingStatus.SCHEDULED);
         return repository.save(scheduling);
     }
 

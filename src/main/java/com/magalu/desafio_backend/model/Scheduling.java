@@ -1,6 +1,7 @@
 package com.magalu.desafio_backend.model;
 
 import com.magalu.desafio_backend.enums.CommunicationType;
+import com.magalu.desafio_backend.enums.SchedulingStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,4 +31,8 @@ public class Scheduling {
     @Enumerated(EnumType.STRING)
     @Column(name = "communication_type", nullable = false)
     private CommunicationType communicationType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private SchedulingStatus status;
 }
